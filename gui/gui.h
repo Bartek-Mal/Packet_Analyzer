@@ -3,8 +3,10 @@
 
 #include <gtkmm.h>
 #include <pcap.h>
+#include <thread>
 #include "devices/devices.h"  
 #include "filter/filter.h"
+#include "packets/sniffing.h"
 
 class MyWindow : public Gtk::Window
 {
@@ -48,7 +50,16 @@ private:
   pcap_if_t *alldevs;
   Devices device; 
   Filters filter;
+  Sniffing sniff;
   pcap_t* handle;
+  struct pcap_pkthdr header;	
+  const u_char *packet;	
+
+  //sniffing threads
+  std::thread sniffing_thread;
+  bool sniffing_active = false; 
+  void start_sniffing_thread();
+  void stop_sniffing_thread();
 };
 
 #endif // GUI_H

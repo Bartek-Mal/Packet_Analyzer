@@ -1,7 +1,9 @@
 #include "gui.h"
 #include <iostream>
 #include <pcap.h>
-
+/*
+* this is the first try of making a packet sniffer for my Engineering project, in a separate window
+*/
 MyWindow::MyWindow()
 : m_main_box(Gtk::ORIENTATION_VERTICAL),
   m_start_button("Start"),
@@ -105,8 +107,60 @@ void MyWindow::on_menu_file_open() { std::cout << "Open selected\n"; }
 void MyWindow::on_menu_file_exit() { hide(); }  
 
 // Toolbar button handlers
-void MyWindow::on_start_button_clicked() { std::cout << "Start capture\n"; /* Placeholder for starting sniffing*/ }
-void MyWindow::on_stop_button_clicked() { std::cout << "Stop capture\n"; /* Placeholder for stopping sniffing */ }
+void MyWindow::on_start_button_clicked() {  
+  if (!handle) {
+    std::cerr << "Packet capture handle is not initialized. Select an interface first.\n";
+    return;
+  }
+
+  if (sniffing_active) {
+        std::cout << "Sniffing już aktywny!" << std::endl;
+        return;
+  }
+
+  start_sniffing_thread();
+
+}
+
+void MyWindow::start_sniffing_thread()
+{
+    sniffing_active = true;
+
+    sniffing_thread = std::thread([this]() {
+
+        pcap_loop(this->handle, 0, &Sniffing::packet_callback, nullptr);
+
+        std::cout << "Wątek sniffowania zakończony." << std::endl;
+    });
+}
+
+void MyWindow::on_stop_button_clicked() {
+
+  stop_sniffing_thread();
+}
+
+void MyWindow::stop_sniffing_thread()
+{
+    if (!sniffing_active) {
+        std::cout << "Sniffing nie jest aktywny." << std::endl;
+        return;
+    }
+    pcap_breakloop(handle);
+
+    // Waiting till thread is dead
+    if (sniffing_thread.joinable()) {
+        sniffing_thread.join();
+    }
+
+    if (handle) {
+        pcap_close(handle);
+        handle = nullptr;
+    }
+
+    sniffing_active = false;
+
+    std::cout << "Sniffing został zatrzymany." << std::endl;
+}
 
 // Filter option handlers
 void MyWindow::on_filter_changed() {

@@ -1,12 +1,8 @@
-#include "devices/devices.h"
-#include "gui/gui.h"
-#include <iostream>
-#include <string> 
+#include <gtkmm.h>
+#include "gui/main_menu.h"  
+int main(int argc, char *argv[]) {
+    auto app = Gtk::Application::create(argc, argv, "com.packet.sniffer");
 
-int main() {
-    auto app = Gtk::Application::create("org.gtkmm.examples.base");
-
-    MyWindow window;
-
-    return app->run(window);
- }
+    MainMenuWindow main_menu;
+    return app->run(main_menu);
+}
