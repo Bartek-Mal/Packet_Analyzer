@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTableWidget>
+#include <QTreeWidget>
 #include <QPlainTextEdit>
 #include <QSplitter>
 #include "packetthread.h"
@@ -16,7 +17,7 @@ class MainWindow : public QMainWindow {
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
 private slots:
     void onStart();
@@ -26,19 +27,18 @@ private slots:
     void onPacketSelected();
 
 private:
-    QComboBox   *ifaceCombo;
-    QCheckBox   *promiscCheck;
-    QLineEdit   *filterEdit;
-    QPushButton *startBtn;
-    QPushButton *stopBtn;
-    QPushButton *applyBtn;
+    QComboBox      *ifaceCombo{};
+    QCheckBox      *promiscCheck{};
+    QLineEdit      *filterEdit{};
+    QPushButton    *startBtn{};
+    QPushButton    *stopBtn{};
+    QPushButton    *applyBtn{};
 
-    QTableWidget   *table;
-    QPlainTextEdit *detailView;
-    QPlainTextEdit *hexView;
-    QList<QByteArray> rawPackets;
-
-    PacketThread *worker{nullptr};
+    QTableWidget   *table{};
+    QTreeWidget    *detailTree{};
+    QPlainTextEdit *hexView{};
+    QVector<PacketData> packets;
+    PacketThread   *worker{nullptr};
 };
 
 #endif // MAINWINDOW_H

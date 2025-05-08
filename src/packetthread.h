@@ -6,16 +6,16 @@
 #include <QByteArray>
 #include <pcap.h>
 
-// Struktura do przenoszenia wszystkich danych o pakiecie
+// Model danych jednego pakietu
 struct PacketData {
-    int        number;
-    QString    time;
-    QString    src;
-    QString    dst;
-    QString    proto;
-    int        length;
-    QString    info;
-    QByteArray raw;
+    int     number;
+    QString time;
+    QString src;
+    QString dst;
+    QString proto;
+    quint32 length;   // szerokość na przewodzie
+    QString info;
+    QByteArray raw;   // dane uchwycone
 };
 Q_DECLARE_METATYPE(PacketData)
 
@@ -24,7 +24,7 @@ class PacketThread : public QThread {
 
 public:
     PacketThread(const QString &iface, bool promisc, const QString &filterExp, QObject *parent = nullptr);
-    ~PacketThread();
+    ~PacketThread() override;
 
     void run() override;
     void stop();

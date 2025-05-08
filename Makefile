@@ -385,7 +385,8 @@ main.o: src/main.cpp src/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o src/main.cpp
 
 mainwindow.o: src/mainwindow.cpp src/mainwindow.h \
-		src/packetthread.h
+		src/packetthread.h \
+		protocols/proto_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o src/mainwindow.cpp
 
 packetthread.o: src/packetthread.cpp src/packetthread.h \

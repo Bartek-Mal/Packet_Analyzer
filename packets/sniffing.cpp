@@ -1,14 +1,16 @@
+// packets/sniffing.cpp
+
 #include "sniffing.h"
-#include <ctype.h> 
+#include <ctype.h>  // for isprint
 
 Sniffing::Sniffing() {}
 Sniffing::~Sniffing() {}
 
 void Sniffing::print_payload(const u_char *payload, int len) const {
-    int len_rem = len;
+    int len_rem    = len;
     int line_width = 16; // bytes per line
     int line_len;
-    int offset = 0; // offset counter
+    int offset = 0;      // offset counter
     const u_char *ch = payload;
 
     if (len <= 0) return;
@@ -25,7 +27,7 @@ void Sniffing::print_payload(const u_char *payload, int len) const {
         line_len = line_width % len_rem;
         print_hex_ascii_line(ch, line_len, offset);
         len_rem -= line_len;
-        ch += line_len;
+        ch      += line_len;
         offset += line_width;
 
         if (len_rem <= line_width) {
@@ -48,7 +50,7 @@ void Sniffing::print_hex_ascii_line(const u_char *payload, int len, int offset) 
         if (i == 7) printf(" ");
     }
 
-    // Print space to align ascii section if less than 8 bytes
+    // Align ASCII section if less than 8 bytes
     if (len < 8) printf(" ");
 
     // Fill hex gap if line isn't full
@@ -68,24 +70,26 @@ void Sniffing::print_hex_ascii_line(const u_char *payload, int len, int offset) 
     printf("\n");
 }
 
-void Sniffing::packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet) {
+void Sniffing::packet_callback(u_char * /*args*/,
+                               const struct pcap_pkthdr * /*header*/,
+                               const u_char *packet)
+{
+    // suppress unused-variable warnings
+    const struct sniff_ethernet *ethernet = (const struct sniff_ethernet*)packet;
+    (void)ethernet;
+
     static int count = 1;
-
-    // declare pointers to packet headers
-    const struct sniff_ethernet *ethernet;
-    const struct sniff_ip       *ip;
-    const struct sniff_tcp      *tcp;
-    const u_char                *payload;
-
-    int size_ip;
-    int size_tcp;
-    int size_payload;
+    const struct sniff_ip  *ip;
+    const struct sniff_tcp *tcp;
+    const u_char           *payload;
+    int  size_ip;
+    int  size_tcp;
+    int  size_payload;
 
     printf("\nPacket number %d:\n", count++);
-    ethernet = (struct sniff_ethernet*)(packet);
 
     // define/compute IP header offset
-    ip = (struct sniff_ip*)(packet + SIZE_ETHERNET);
+    ip = (const struct sniff_ip*)(packet + SIZE_ETHERNET);
     size_ip = IP_HL(ip) * 4;
     if (size_ip < 20) {
         printf("   * Invalid IP header length: %u bytes\n", size_ip);
@@ -112,8 +116,8 @@ void Sniffing::packet_callback(u_char *args, const struct pcap_pkthdr *header, c
             return;
     }
 
-    // OK, this packet is TCP.
-    tcp = (struct sniff_tcp*)(packet + SIZE_ETHERNET + size_ip);
+    // This packet is TCP
+    tcp = (const struct sniff_tcp*)(packet + SIZE_ETHERNET + size_ip);
     size_tcp = TH_OFF(tcp) * 4;
     if (size_tcp < 20) {
         printf("   * Invalid TCP header length: %u bytes\n", size_tcp);
@@ -124,12 +128,12 @@ void Sniffing::packet_callback(u_char *args, const struct pcap_pkthdr *header, c
     printf("   Dst port: %d\n", ntohs(tcp->th_dport));
 
     // Define/compute TCP payload offset
-    payload = (u_char *)(packet + SIZE_ETHERNET + size_ip + size_tcp);
+    payload = (u_char*)(packet + SIZE_ETHERNET + size_ip + size_tcp);
     size_payload = ntohs(ip->ip_len) - (size_ip + size_tcp);
 
     if (size_payload > 0) {
         printf("   Payload (%d bytes):\n", size_payload);
-        Sniffing sniff;  // create an instance to call non-static members
-        sniff.print_payload(payload, size_payload);
+        Sniffing helper;
+        helper.print_payload(payload, size_payload);
     }
 }
