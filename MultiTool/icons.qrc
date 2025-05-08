@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file>src/icons/firewall.png</file>
+    <file>src/icons/ids.png</file>
+    <file>src/icons/dns.png</file>
+    <file>src/icons/endpoint.png</file>
+    <file>src/icons/encryption.png</file>
+    <file>src/icons/network.png</file>
+    <file>src/icons/vuln.png</file>
+    <file>src/icons/siem.png</file>
+    <file>src/icons/scraper.png</file>
+    <file>src/icons/netmapper.png</file>
+    <file>src/icons/logs.png</file>
+    <file>src/icons/ioc.png</file>
+  </qresource>
+</RCC>
