@@ -1,0 +1,28 @@
+# TODO
+
+1. **Background Packet Capture & IDS**
+   - [ ] Implement a background capture thread using libpcap (`pcap_open_live` + `pcap_loop`).
+   - [ ] Integrate packet dumping (e.g. via `pcap_dump`) to a `.sniff` file.
+   - [ ] Embed an IDS engine that inspects each packet against predefined rules as they’re captured.
+   - [ ] Add GUI controls to start/stop live capture and to load/playback `.sniff` files in the packet viewer.
+
+2. **Virtual Machine Containerization**
+   - [ ] Define a Docker/Podman image (or LXC profile) for test VMs.
+   - [ ] Add Qt-based UI controls to launch/stop these containers or VMs on demand.
+   - [ ] Capture VM logs/console output and surface them in the GUI.
+   - [ ] Ensure network interfaces are bridged so the sniffer can monitor VM traffic.
+
+3. **Database Integration**
+   - [ ] Choose a database backend (SQLite for local, or PostgreSQL/MySQL for central logging).
+   - [ ] Design schema for:
+     - Captured packet metadata
+     - IDS alerts
+     - VM/container lifecycle events
+     - User actions (start/stop captures, load files, etc.)
+   - [ ] Implement a data-access layer in C++ (e.g. Qt SQL module or ODB).
+   - [ ] Add GUI views for browsing captured packets, alerts, and historical logs.
+
+4. **Real-Time Python Analysis Module**
+   - [ ] Prototype a Python library that:
+     - Reads packets (live or from dump) via `scapy` or `pyshark`.
+     - Applies

@@ -16,120 +16,103 @@
 LauncherWindow::LauncherWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    // --- Setup tabs ---
     tabs = new QTabWidget(this);
 
-    // 1) Tab SIEM
+    // --- SIEM tab (jak wcześniej) ---
     siemPage = new QWidget;
     {
-        auto *hLayout = new QHBoxLayout(siemPage);
-        auto *sideList = new QListWidget;
-        sideList->addItem("Option 1");
-        sideList->addItem("Option 2");
-        sideList->setStyleSheet("background:#1e1e28;color:#ffffff;");
-        hLayout->addWidget(sideList, 1);
-
-        auto *placeholder = new QLabel("SIEM dashboard");
-        placeholder->setStyleSheet("color:#bbbbff; font-style:italic;");
-        placeholder->setAlignment(Qt::AlignCenter);
-        hLayout->addWidget(placeholder, 4);
+        auto *h = new QHBoxLayout(siemPage);
+        auto *side = new QListWidget;
+        side->addItem("Option 1");
+        side->addItem("Option 2");
+        side->setStyleSheet("background:#1e1e28;color:#ffffff;");
+        h->addWidget(side,1);
+        auto *lbl = new QLabel("SIEM dashboard");
+        lbl->setStyleSheet("color:#bbbbff; font-style:italic;");
+        lbl->setAlignment(Qt::AlignCenter);
+        h->addWidget(lbl,4);
     }
     tabs->addTab(siemPage, tr("SIEM"));
-    
-    // 2) Tab TOOLS
+
+    // --- TOOLS tab ---
     toolsPage = new QWidget;
     {
-        auto *outerVBox = new QVBoxLayout(toolsPage);
-        outerVBox->addStretch();                   // górny odstęp
+        auto *outer = new QVBoxLayout(toolsPage);
+        outer->addStretch();
 
         auto *hCenter = new QHBoxLayout;
-        hCenter->addStretch();                     // lewy odstęp
+        hCenter->addStretch();
 
         auto *grid = new QGridLayout;
         grid->setHorizontalSpacing(40);
         grid->setVerticalSpacing(40);
 
-        // Liczba kolumn, zmienia się w razie potrzeby:
         const int columns = 3;
-
-        // Fixa wielkości kafelka i ikony:
         const int tileSize = 180;
         const int iconSize = 100;
 
-        // Funkcja tworząca kwadratowy przycisk-ikonę
-        auto makeTileIcon = [&](const QString &absPath, const QString &resName){
-            QIcon icon;
-            if (QFile::exists(absPath)) {
-                icon = QIcon(absPath);
-            } else {
-                icon = QIcon(QString(":/icons/%1").arg(resName));
-            }
+        // Prepare rows/cols stretch
+        QString iconsDir = QCoreApplication::applicationDirPath()
+                         + "/../MultiTool/src/icons";
+        QDir dir(iconsDir);
+        QStringList files = dir.entryList(QStringList() << "*.png", QDir::Files);
+        int rows = (files.size() + columns - 1) / columns;
+        for(int r=0; r<rows; ++r) grid->setRowStretch(r,1);
+        for(int c=0; c<columns; ++c) grid->setColumnStretch(c,1);
+
+        // Factory
+        auto makeTile = [&](const QString &filename){
+            QString absPath = dir.filePath(filename);
+            QIcon icon( QFile::exists(absPath)
+                        ? absPath
+                        : QString(":/icons/%1").arg(filename) );
             QToolButton *btn = new QToolButton;
-            btn->setFixedSize(tileSize, tileSize);
+            btn->setFixedSize(tileSize,tileSize);
             btn->setIcon(icon);
-            btn->setIconSize(QSize(iconSize, iconSize));
+            btn->setIconSize(QSize(iconSize,iconSize));
             btn->setToolButtonStyle(Qt::ToolButtonIconOnly);
             btn->setStyleSheet(R"(
-                QToolButton {
-                    background-color: #2a2a35;
-                    border-radius: 12px;
-                }
-                QToolButton:hover {
-                    background-color: #0a64c8;
-                }
+                QToolButton { background-color:#2a2a35; border-radius:12px; }
+                QToolButton:hover { background-color:#0a64c8; }
             )");
             return btn;
         };
 
-        // Ścieżka do folderu z ikonami na dysku
-        QString iconsDir = QCoreApplication::applicationDirPath()
-                        + "/../MultiTool/src/icons";
-        QDir dir(iconsDir);
-
-        // Pobierz wszystkie *.png
-        QStringList files = dir.entryList(QStringList() << "*.png", QDir::Files);
-
-        // Oblicz liczbę wierszy
-        int rows = (files.size() + columns - 1) / columns;
-        for(int r=0; r<rows; ++r)
-            grid->setRowStretch(r, 1);
-        for(int c=0; c<columns; ++c)
-            grid->setColumnStretch(c, 1);
-
-        // Dodaj kafelki w siatce
+        // Place tiles
         for(int i=0; i<files.size(); ++i) {
-            int row = i / columns;
-            int col = i % columns;
+            int r = i/columns, c = i%columns;
+            QString fn = files.at(i);
+            QToolButton *tile = makeTile(fn);
 
-            QString filename = files.at(i);                     // np. "dns.png"
-            QString absPath  = dir.filePath(filename);          // "/.../src/icons/dns.png"
-
-            QToolButton *tile = makeTileIcon(absPath, filename);
-
-            // Jeśli to sieć, podpinamy PacketSniffer
-            if(filename == "network.png") {
+            if(fn=="network.png") {
                 snifferBtn = tile;
-                connect(snifferBtn, &QToolButton::clicked,
+                connect(tile, &QToolButton::clicked,
                         this, &LauncherWindow::launchPacketSniffer);
             }
+            else if(fn=="vuln.png") {
+                vulnBtn = tile;
+                connect(tile, &QToolButton::clicked,
+                        this, &LauncherWindow::launchVulnerabilityScanner);
+            }
 
-            grid->addWidget(tile, row, col);
+            grid->addWidget(tile, r, c);
         }
 
         hCenter->addLayout(grid);
-        hCenter->addStretch();                    // prawy odstęp
-        outerVBox->addLayout(hCenter);
-        outerVBox->addStretch();                  // dolny odstęp
+        hCenter->addStretch();
+        outer->addLayout(hCenter);
+        outer->addStretch();
     }
     tabs->addTab(toolsPage, tr("Tools"));
-    // 3) Tab SETTINGS
+
+    // --- SETTINGS tab ---
     settingsPage = new QWidget;
     {
-        auto *vLayout = new QVBoxLayout(settingsPage);
+        auto *v = new QVBoxLayout(settingsPage);
         auto *lbl = new QLabel("Settings coming soon");
         lbl->setStyleSheet("color:#8888ff;");
-        vLayout->addWidget(lbl);
-        vLayout->addStretch();
+        v->addWidget(lbl);
+        v->addStretch();
     }
     tabs->addTab(settingsPage, tr("Settings"));
 
@@ -139,10 +122,16 @@ LauncherWindow::LauncherWindow(QWidget *parent)
 
 void LauncherWindow::launchPacketSniffer()
 {
-    QString dir = QCoreApplication::applicationDirPath();
-    QString exe = QDir(dir).absoluteFilePath("../PacketSniffer/PacketSniffer");
-    if (!QFile::exists(exe)) {
-        return;
-    }
-    QProcess::startDetached(exe);
+    QString exe = QDir(QCoreApplication::applicationDirPath())
+                  .absoluteFilePath("../PacketSniffer/PacketSniffer");
+    if (QFile::exists(exe))
+        QProcess::startDetached(exe);
+}
+
+void LauncherWindow::launchVulnerabilityScanner()
+{
+    QString exe = QDir(QCoreApplication::applicationDirPath())
+                  .absoluteFilePath("../VulnerabilityScanner/VulnerabilityScanner");
+    if (QFile::exists(exe))
+        QProcess::startDetached(exe);
 }

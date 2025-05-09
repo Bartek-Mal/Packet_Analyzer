@@ -16,6 +16,7 @@ public:
 
 private slots:
     void launchPacketSniffer();
+    void launchVulnerabilityScanner();
 
 private:
     QTabWidget  *tabs{nullptr};
@@ -24,6 +25,7 @@ private:
     QWidget     *settingsPage{nullptr};
 
     QToolButton *snifferBtn{nullptr};
+    QToolButton *vulnBtn{nullptr};
 };
 
 #endif // LAUNCHERWINDOW_H
