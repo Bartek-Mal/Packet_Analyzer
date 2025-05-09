@@ -1,4 +1,5 @@
 #include "launcherwindow.h"
+#include "SonarWidget.h"  
 
 #include <QTabWidget>
 #include <QListWidget>
@@ -12,25 +13,63 @@
 #include <QDir>
 #include <QFile>
 #include <QSizePolicy>
+#include <QPushButton>
+
 
 LauncherWindow::LauncherWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    tabs = new QTabWidget(this);
+    tabs = new QTabWidget(this);    
 
-    // --- SIEM tab (jak wcześniej) ---
+    // --- SIEM tab ---
     siemPage = new QWidget;
     {
-        auto *h = new QHBoxLayout(siemPage);
-        auto *side = new QListWidget;
-        side->addItem("Option 1");
-        side->addItem("Option 2");
-        side->setStyleSheet("background:#1e1e28;color:#ffffff;");
-        h->addWidget(side,1);
-        auto *lbl = new QLabel("SIEM dashboard");
-        lbl->setStyleSheet("color:#bbbbff; font-style:italic;");
-        lbl->setAlignment(Qt::AlignCenter);
-        h->addWidget(lbl,4);
+        auto *grid = new QGridLayout(siemPage);
+        grid->setContentsMargins(20,20,20,20);
+        grid->setHorizontalSpacing(30);
+        grid->setVerticalSpacing(30);
+
+        // rozciągnięcie kolumn i wierszy
+        grid->setColumnStretch(0,1);
+        grid->setColumnStretch(1,2);
+        grid->setRowStretch(0,1);
+        grid->setRowStretch(1,1);
+        grid->setRowStretch(2,0);
+
+        // 1) Live Alerts (0,0)
+        auto *liveAlerts = new QListWidget;
+        liveAlerts->setStyleSheet("background:#2a2a35; color:#ffffff; padding:10px;");
+        liveAlerts->addItem("HIGH   – IDS alert – 5 mins ago");
+        liveAlerts->addItem("MEDIUM – Firewall alert – 15 mins ago");
+        liveAlerts->addItem("MEDIUM – IPS alert – 30 mins ago");
+        liveAlerts->addItem("LOW    – Update failure – 1 hour ago");
+        grid->addWidget(liveAlerts, 0, 0);
+
+        // 2) Sonar / Network Map (0–1,1)
+        auto *sonar = new SonarWidget;
+        grid->addWidget(sonar, 0, 1, 2, 1);
+
+        // 3) Traffic Graph placeholder (1,0)
+        auto *traffic = new QLabel(tr("Traffic Graph"));
+        traffic->setAlignment(Qt::AlignCenter);
+        traffic->setStyleSheet("background:#2a2a35; color:#888888; font-size:16px; padding:20px;");
+        grid->addWidget(traffic, 1, 0);
+
+        // 4) Recent Events (2,0)
+        auto *recentEvents = new QListWidget;
+        recentEvents->setStyleSheet("background:#2a2a35; color:#ffffff; padding:10px;");
+        recentEvents->addItem("Info    – Failed login – 3 mins ago");
+        recentEvents->addItem("Notice  – New connection – 25 mins ago");
+        recentEvents->addItem("Warning – Port scan detected – 1 hour ago");
+        recentEvents->addItem("Info    – Rule updated – 2 hours ago");
+        grid->addWidget(recentEvents, 2, 0);
+
+        // 5) Start Scan button (2,1)
+        auto *btnScan = new QPushButton(tr("Start Scan"));
+        btnScan->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        btnScan->setStyleSheet(
+            "background:#0a64c8; color:#ffffff; padding:10px; border-radius:6px;");
+        grid->addWidget(btnScan, 2, 1);
     }
     tabs->addTab(siemPage, tr("SIEM"));
 
