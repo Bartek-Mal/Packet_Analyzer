@@ -13,7 +13,7 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QProcess>
-#include <QCompleter>    
+#include <QCompleter>    // Required for auto-completion
 
 NetworkMapperWindow::NetworkMapperWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -133,7 +133,7 @@ void NetworkMapperWindow::startMapScan()
     QString net  = targetEdit->text();
     QString opts = optionsEdit->text();
     rawOutput->append(QString("%1 %2").arg(opts, net));
-    // TODO: launch Net Mapper engine here
+    // TODO: launch your nmap engine here
 }
 
 void NetworkMapperWindow::showOptionsDialog()
@@ -219,5 +219,5 @@ void NetworkMapperWindow::startDirAttack()
         return;
     }
     dirOutput->append(tr("Running directory attack on %1 with %2").arg(tgt, dict));
-    // TODO: launch directory-attack backend here
+    // TODO: launch your directory-attack backend here
 }
