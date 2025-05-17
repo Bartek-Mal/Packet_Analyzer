@@ -137,6 +137,10 @@ LauncherWindow::LauncherWindow(QWidget *parent)
                 connect(tile, &QToolButton::clicked,
                         this, &LauncherWindow::launchNetMapper);
             }
+            else if (fn == "firewall.png") {
+                connect(tile, &QToolButton::clicked,
+                        this, &LauncherWindow::launchFirewall);
+            }
 
 
             grid->addWidget(tile, r, c);
@@ -184,6 +188,14 @@ void LauncherWindow::launchNetMapper()
 {
     QString exe = QDir(QCoreApplication::applicationDirPath())
                   .absoluteFilePath("../NetMapper/NetMapper");
+    if (QFile::exists(exe))
+        QProcess::startDetached(exe);
+}
+
+void LauncherWindow::launchFirewall()
+{
+    QString exe = QDir(QCoreApplication::applicationDirPath())
+                  .absoluteFilePath("../Firewall/Firewall");
     if (QFile::exists(exe))
         QProcess::startDetached(exe);
 }

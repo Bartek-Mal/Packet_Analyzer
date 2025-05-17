@@ -18,6 +18,7 @@ private slots:
     void launchPacketSniffer();
     void launchVulnerabilityScanner();
     void launchNetMapper(); 
+    void launchFirewall(); 
 
 private:
     QTabWidget  *tabs{nullptr};

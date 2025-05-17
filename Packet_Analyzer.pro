@@ -5,4 +5,5 @@ SUBDIRS += \
     MultiTool \
     PacketSniffer \
     VulnerabilityScanner \
-    NetMapper
+    NetMapper \
+    Firewall
