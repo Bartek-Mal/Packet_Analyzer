@@ -4,4 +4,5 @@ CONFIG += ordered
 SUBDIRS += \
     MultiTool \
     PacketSniffer \
-    VulnerabilityScanner
+    VulnerabilityScanner \
+    NetMapper

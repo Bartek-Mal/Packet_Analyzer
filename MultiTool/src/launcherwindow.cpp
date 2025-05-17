@@ -133,6 +133,11 @@ LauncherWindow::LauncherWindow(QWidget *parent)
                 connect(tile, &QToolButton::clicked,
                         this, &LauncherWindow::launchVulnerabilityScanner);
             }
+            else if (fn == "netmapper.png") {
+                connect(tile, &QToolButton::clicked,
+                        this, &LauncherWindow::launchNetMapper);
+            }
+
 
             grid->addWidget(tile, r, c);
         }
@@ -171,6 +176,14 @@ void LauncherWindow::launchVulnerabilityScanner()
 {
     QString exe = QDir(QCoreApplication::applicationDirPath())
                   .absoluteFilePath("../VulnerabilityScanner/VulnerabilityScanner");
+    if (QFile::exists(exe))
+        QProcess::startDetached(exe);
+}
+
+void LauncherWindow::launchNetMapper()
+{
+    QString exe = QDir(QCoreApplication::applicationDirPath())
+                  .absoluteFilePath("../NetMapper/NetMapper");
     if (QFile::exists(exe))
         QProcess::startDetached(exe);
 }

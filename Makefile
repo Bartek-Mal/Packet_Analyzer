@@ -34,7 +34,8 @@ DISTDIR = /home/bartosz/Packet_Analyzer/.tmp/Packet_Analyzer1.0.0
 SUBTARGETS    =  \
 		sub-MultiTool \
 		sub-PacketSniffer \
-		sub-VulnerabilityScanner
+		sub-VulnerabilityScanner \
+		sub-NetMapper
 
 
 sub-MultiTool-qmake_all:  FORCE
@@ -166,6 +167,49 @@ sub-VulnerabilityScanner-uninstall_subtargets-ordered: sub-PacketSniffer-uninsta
 sub-VulnerabilityScanner-uninstall_subtargets: FORCE
 	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
 	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile uninstall
+sub-NetMapper-qmake_all: sub-VulnerabilityScanner-qmake_all FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro
+	cd NetMapper/ && $(MAKE) -f Makefile qmake_all
+sub-NetMapper: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile
+sub-NetMapper-make_first-ordered: sub-VulnerabilityScanner-make_first-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile 
+sub-NetMapper-make_first: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile 
+sub-NetMapper-all-ordered: sub-VulnerabilityScanner-all-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile all
+sub-NetMapper-all: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile all
+sub-NetMapper-clean-ordered: sub-VulnerabilityScanner-clean-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile clean
+sub-NetMapper-clean: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile clean
+sub-NetMapper-distclean-ordered: sub-VulnerabilityScanner-distclean-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile distclean
+sub-NetMapper-distclean: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile distclean
+sub-NetMapper-install_subtargets-ordered: sub-VulnerabilityScanner-install_subtargets-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile install
+sub-NetMapper-install_subtargets: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile install
+sub-NetMapper-uninstall_subtargets-ordered: sub-VulnerabilityScanner-uninstall_subtargets-ordered  FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile uninstall
+sub-NetMapper-uninstall_subtargets: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile uninstall
 
 Makefile: Packet_Analyzer.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf \
@@ -293,16 +337,16 @@ Packet_Analyzer.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile Packet_Analyzer.pro
 
-qmake_all: sub-MultiTool-qmake_all sub-PacketSniffer-qmake_all sub-VulnerabilityScanner-qmake_all FORCE
+qmake_all: sub-MultiTool-qmake_all sub-PacketSniffer-qmake_all sub-VulnerabilityScanner-qmake_all sub-NetMapper-qmake_all FORCE
 
-make_first: sub-MultiTool-make_first-ordered sub-PacketSniffer-make_first-ordered sub-VulnerabilityScanner-make_first-ordered  FORCE
-all: sub-MultiTool-all-ordered sub-PacketSniffer-all-ordered sub-VulnerabilityScanner-all-ordered  FORCE
-clean: sub-MultiTool-clean-ordered sub-PacketSniffer-clean-ordered sub-VulnerabilityScanner-clean-ordered  FORCE
-distclean: sub-MultiTool-distclean-ordered sub-PacketSniffer-distclean-ordered sub-VulnerabilityScanner-distclean-ordered  FORCE
+make_first: sub-MultiTool-make_first-ordered sub-PacketSniffer-make_first-ordered sub-VulnerabilityScanner-make_first-ordered sub-NetMapper-make_first-ordered  FORCE
+all: sub-MultiTool-all-ordered sub-PacketSniffer-all-ordered sub-VulnerabilityScanner-all-ordered sub-NetMapper-all-ordered  FORCE
+clean: sub-MultiTool-clean-ordered sub-PacketSniffer-clean-ordered sub-VulnerabilityScanner-clean-ordered sub-NetMapper-clean-ordered  FORCE
+distclean: sub-MultiTool-distclean-ordered sub-PacketSniffer-distclean-ordered sub-VulnerabilityScanner-distclean-ordered sub-NetMapper-distclean-ordered  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-MultiTool-install_subtargets-ordered sub-PacketSniffer-install_subtargets-ordered sub-VulnerabilityScanner-install_subtargets-ordered FORCE
-uninstall_subtargets: sub-MultiTool-uninstall_subtargets-ordered sub-PacketSniffer-uninstall_subtargets-ordered sub-VulnerabilityScanner-uninstall_subtargets-ordered FORCE
+install_subtargets: sub-MultiTool-install_subtargets-ordered sub-PacketSniffer-install_subtargets-ordered sub-VulnerabilityScanner-install_subtargets-ordered sub-NetMapper-install_subtargets-ordered FORCE
+uninstall_subtargets: sub-MultiTool-uninstall_subtargets-ordered sub-PacketSniffer-uninstall_subtargets-ordered sub-VulnerabilityScanner-uninstall_subtargets-ordered sub-NetMapper-uninstall_subtargets-ordered FORCE
 
 sub-MultiTool-check_ordered:
 	@test -d MultiTool/ || mkdir -p MultiTool/
@@ -313,7 +357,10 @@ sub-PacketSniffer-check_ordered: sub-MultiTool-check_ordered
 sub-VulnerabilityScanner-check_ordered: sub-PacketSniffer-check_ordered 
 	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
 	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile check
-check: sub-MultiTool-check_ordered sub-PacketSniffer-check_ordered sub-VulnerabilityScanner-check_ordered
+sub-NetMapper-check_ordered: sub-VulnerabilityScanner-check_ordered 
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile check
+check: sub-MultiTool-check_ordered sub-PacketSniffer-check_ordered sub-VulnerabilityScanner-check_ordered sub-NetMapper-check_ordered
 
 sub-MultiTool-benchmark_ordered:
 	@test -d MultiTool/ || mkdir -p MultiTool/
@@ -324,7 +371,10 @@ sub-PacketSniffer-benchmark_ordered: sub-MultiTool-benchmark_ordered
 sub-VulnerabilityScanner-benchmark_ordered: sub-PacketSniffer-benchmark_ordered 
 	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
 	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-MultiTool-benchmark_ordered sub-PacketSniffer-benchmark_ordered sub-VulnerabilityScanner-benchmark_ordered
+sub-NetMapper-benchmark_ordered: sub-VulnerabilityScanner-benchmark_ordered 
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile benchmark
+benchmark: sub-MultiTool-benchmark_ordered sub-PacketSniffer-benchmark_ordered sub-VulnerabilityScanner-benchmark_ordered sub-NetMapper-benchmark_ordered
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
@@ -336,7 +386,7 @@ FORCE:
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
-distdir: sub-MultiTool-distdir sub-PacketSniffer-distdir sub-VulnerabilityScanner-distdir FORCE
+distdir: sub-MultiTool-distdir sub-PacketSniffer-distdir sub-VulnerabilityScanner-distdir sub-NetMapper-distdir FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_example_icons_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf Packet_Analyzer.pro $(DISTDIR)/
 
@@ -351,4 +401,8 @@ sub-PacketSniffer-distdir: FORCE
 sub-VulnerabilityScanner-distdir: FORCE
 	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
 	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/VulnerabilityScanner
+
+sub-NetMapper-distdir: FORCE
+	@test -d NetMapper/ || mkdir -p NetMapper/
+	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/NetMapper
 
