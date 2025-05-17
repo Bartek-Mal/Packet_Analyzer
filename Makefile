@@ -34,9 +34,10 @@ DISTDIR = /home/bartosz/Packet_Analyzer/.tmp/Packet_Analyzer1.0.0
 SUBTARGETS    =  \
 		sub-MultiTool \
 		sub-PacketSniffer \
-		sub-VulnerabilityScanner \
+		sub-IOCScanner \
 		sub-NetMapper \
-		sub-Firewall
+		sub-Firewall \
+		sub-VulnerabilityScanner
 
 
 sub-MultiTool-qmake_all:  FORCE
@@ -125,87 +126,87 @@ sub-PacketSniffer-uninstall_subtargets-ordered: sub-MultiTool-uninstall_subtarge
 sub-PacketSniffer-uninstall_subtargets: FORCE
 	@test -d PacketSniffer/ || mkdir -p PacketSniffer/
 	cd PacketSniffer/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/PacketSniffer/PacketSniffer.pro ) && $(MAKE) -f Makefile uninstall
-sub-VulnerabilityScanner-qmake_all: sub-PacketSniffer-qmake_all FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro
-	cd VulnerabilityScanner/ && $(MAKE) -f Makefile qmake_all
-sub-VulnerabilityScanner: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile
-sub-VulnerabilityScanner-make_first-ordered: sub-PacketSniffer-make_first-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile 
-sub-VulnerabilityScanner-make_first: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile 
-sub-VulnerabilityScanner-all-ordered: sub-PacketSniffer-all-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile all
-sub-VulnerabilityScanner-all: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile all
-sub-VulnerabilityScanner-clean-ordered: sub-PacketSniffer-clean-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile clean
-sub-VulnerabilityScanner-clean: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile clean
-sub-VulnerabilityScanner-distclean-ordered: sub-PacketSniffer-distclean-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile distclean
-sub-VulnerabilityScanner-distclean: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile distclean
-sub-VulnerabilityScanner-install_subtargets-ordered: sub-PacketSniffer-install_subtargets-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile install
-sub-VulnerabilityScanner-install_subtargets: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile install
-sub-VulnerabilityScanner-uninstall_subtargets-ordered: sub-PacketSniffer-uninstall_subtargets-ordered  FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile uninstall
-sub-VulnerabilityScanner-uninstall_subtargets: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile uninstall
-sub-NetMapper-qmake_all: sub-VulnerabilityScanner-qmake_all FORCE
+sub-IOCScanner-qmake_all: sub-PacketSniffer-qmake_all FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro
+	cd IOCScanner/ && $(MAKE) -f Makefile qmake_all
+sub-IOCScanner: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile
+sub-IOCScanner-make_first-ordered: sub-PacketSniffer-make_first-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile 
+sub-IOCScanner-make_first: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile 
+sub-IOCScanner-all-ordered: sub-PacketSniffer-all-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile all
+sub-IOCScanner-all: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile all
+sub-IOCScanner-clean-ordered: sub-PacketSniffer-clean-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile clean
+sub-IOCScanner-clean: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile clean
+sub-IOCScanner-distclean-ordered: sub-PacketSniffer-distclean-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile distclean
+sub-IOCScanner-distclean: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile distclean
+sub-IOCScanner-install_subtargets-ordered: sub-PacketSniffer-install_subtargets-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile install
+sub-IOCScanner-install_subtargets: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile install
+sub-IOCScanner-uninstall_subtargets-ordered: sub-PacketSniffer-uninstall_subtargets-ordered  FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile uninstall
+sub-IOCScanner-uninstall_subtargets: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile uninstall
+sub-NetMapper-qmake_all: sub-IOCScanner-qmake_all FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro
 	cd NetMapper/ && $(MAKE) -f Makefile qmake_all
 sub-NetMapper: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile
-sub-NetMapper-make_first-ordered: sub-VulnerabilityScanner-make_first-ordered  FORCE
+sub-NetMapper-make_first-ordered: sub-IOCScanner-make_first-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile 
 sub-NetMapper-make_first: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile 
-sub-NetMapper-all-ordered: sub-VulnerabilityScanner-all-ordered  FORCE
+sub-NetMapper-all-ordered: sub-IOCScanner-all-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile all
 sub-NetMapper-all: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile all
-sub-NetMapper-clean-ordered: sub-VulnerabilityScanner-clean-ordered  FORCE
+sub-NetMapper-clean-ordered: sub-IOCScanner-clean-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile clean
 sub-NetMapper-clean: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile clean
-sub-NetMapper-distclean-ordered: sub-VulnerabilityScanner-distclean-ordered  FORCE
+sub-NetMapper-distclean-ordered: sub-IOCScanner-distclean-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile distclean
 sub-NetMapper-distclean: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile distclean
-sub-NetMapper-install_subtargets-ordered: sub-VulnerabilityScanner-install_subtargets-ordered  FORCE
+sub-NetMapper-install_subtargets-ordered: sub-IOCScanner-install_subtargets-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile install
 sub-NetMapper-install_subtargets: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile install
-sub-NetMapper-uninstall_subtargets-ordered: sub-VulnerabilityScanner-uninstall_subtargets-ordered  FORCE
+sub-NetMapper-uninstall_subtargets-ordered: sub-IOCScanner-uninstall_subtargets-ordered  FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile uninstall
 sub-NetMapper-uninstall_subtargets: FORCE
@@ -254,6 +255,49 @@ sub-Firewall-uninstall_subtargets-ordered: sub-NetMapper-uninstall_subtargets-or
 sub-Firewall-uninstall_subtargets: FORCE
 	@test -d Firewall/ || mkdir -p Firewall/
 	cd Firewall/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/Firewall/Firewall.pro ) && $(MAKE) -f Makefile uninstall
+sub-VulnerabilityScanner-qmake_all: sub-Firewall-qmake_all FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro
+	cd VulnerabilityScanner/ && $(MAKE) -f Makefile qmake_all
+sub-VulnerabilityScanner: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile
+sub-VulnerabilityScanner-make_first-ordered: sub-Firewall-make_first-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile 
+sub-VulnerabilityScanner-make_first: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile 
+sub-VulnerabilityScanner-all-ordered: sub-Firewall-all-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile all
+sub-VulnerabilityScanner-all: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile all
+sub-VulnerabilityScanner-clean-ordered: sub-Firewall-clean-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile clean
+sub-VulnerabilityScanner-clean: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile clean
+sub-VulnerabilityScanner-distclean-ordered: sub-Firewall-distclean-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile distclean
+sub-VulnerabilityScanner-distclean: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile distclean
+sub-VulnerabilityScanner-install_subtargets-ordered: sub-Firewall-install_subtargets-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile install
+sub-VulnerabilityScanner-install_subtargets: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile install
+sub-VulnerabilityScanner-uninstall_subtargets-ordered: sub-Firewall-uninstall_subtargets-ordered  FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile uninstall
+sub-VulnerabilityScanner-uninstall_subtargets: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile uninstall
 
 Makefile: Packet_Analyzer.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf \
@@ -281,18 +325,69 @@ Makefile: Packet_Analyzer.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qm
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsanimation.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsfolderlistmodel.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsplatform.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsqmlmodels.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssettings.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssharedimage.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labswavefrontmesh.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdf.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfquick.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfwidgets.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioning.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioningquick.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qml.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlassetdownloader.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcompiler.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcore.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlintegration.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmllocalstorage.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmodels.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlnetwork.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmltest.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlworkerscript.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlxmllistmodel.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basic.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basicstyleimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusion.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusionstyleimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imagine.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imaginestyleimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2impl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2material.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2materialstyleimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universal.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universalstyleimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2quickimpl.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2utils.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicklayouts.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicktemplates2.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickvectorimage.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannel.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannelquick.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginecore.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequick.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequickdelegatesqml.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginewidgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
@@ -343,18 +438,69 @@ Makefile: Packet_Analyzer.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qm
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsanimation.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsfolderlistmodel.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsplatform.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsqmlmodels.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssettings.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssharedimage.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labswavefrontmesh.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdf.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfquick.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfwidgets.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioning.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioningquick.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qml.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlassetdownloader.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcompiler.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcore.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlintegration.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmllocalstorage.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmodels.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlnetwork.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmltest.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlworkerscript.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlxmllistmodel.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quick.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basic.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basicstyleimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusion.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusionstyleimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imagine.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imaginestyleimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2impl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2material.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2materialstyleimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universal.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universalstyleimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2quickimpl.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2utils.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicklayouts.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicktemplates2.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickvectorimage.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickwidgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannel.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannelquick.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginecore.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequick.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequickdelegatesqml.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginewidgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
@@ -381,16 +527,16 @@ Packet_Analyzer.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile Packet_Analyzer.pro
 
-qmake_all: sub-MultiTool-qmake_all sub-PacketSniffer-qmake_all sub-VulnerabilityScanner-qmake_all sub-NetMapper-qmake_all sub-Firewall-qmake_all FORCE
+qmake_all: sub-MultiTool-qmake_all sub-PacketSniffer-qmake_all sub-IOCScanner-qmake_all sub-NetMapper-qmake_all sub-Firewall-qmake_all sub-VulnerabilityScanner-qmake_all FORCE
 
-make_first: sub-MultiTool-make_first-ordered sub-PacketSniffer-make_first-ordered sub-VulnerabilityScanner-make_first-ordered sub-NetMapper-make_first-ordered sub-Firewall-make_first-ordered  FORCE
-all: sub-MultiTool-all-ordered sub-PacketSniffer-all-ordered sub-VulnerabilityScanner-all-ordered sub-NetMapper-all-ordered sub-Firewall-all-ordered  FORCE
-clean: sub-MultiTool-clean-ordered sub-PacketSniffer-clean-ordered sub-VulnerabilityScanner-clean-ordered sub-NetMapper-clean-ordered sub-Firewall-clean-ordered  FORCE
-distclean: sub-MultiTool-distclean-ordered sub-PacketSniffer-distclean-ordered sub-VulnerabilityScanner-distclean-ordered sub-NetMapper-distclean-ordered sub-Firewall-distclean-ordered  FORCE
+make_first: sub-MultiTool-make_first-ordered sub-PacketSniffer-make_first-ordered sub-IOCScanner-make_first-ordered sub-NetMapper-make_first-ordered sub-Firewall-make_first-ordered sub-VulnerabilityScanner-make_first-ordered  FORCE
+all: sub-MultiTool-all-ordered sub-PacketSniffer-all-ordered sub-IOCScanner-all-ordered sub-NetMapper-all-ordered sub-Firewall-all-ordered sub-VulnerabilityScanner-all-ordered  FORCE
+clean: sub-MultiTool-clean-ordered sub-PacketSniffer-clean-ordered sub-IOCScanner-clean-ordered sub-NetMapper-clean-ordered sub-Firewall-clean-ordered sub-VulnerabilityScanner-clean-ordered  FORCE
+distclean: sub-MultiTool-distclean-ordered sub-PacketSniffer-distclean-ordered sub-IOCScanner-distclean-ordered sub-NetMapper-distclean-ordered sub-Firewall-distclean-ordered sub-VulnerabilityScanner-distclean-ordered  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-MultiTool-install_subtargets-ordered sub-PacketSniffer-install_subtargets-ordered sub-VulnerabilityScanner-install_subtargets-ordered sub-NetMapper-install_subtargets-ordered sub-Firewall-install_subtargets-ordered FORCE
-uninstall_subtargets: sub-MultiTool-uninstall_subtargets-ordered sub-PacketSniffer-uninstall_subtargets-ordered sub-VulnerabilityScanner-uninstall_subtargets-ordered sub-NetMapper-uninstall_subtargets-ordered sub-Firewall-uninstall_subtargets-ordered FORCE
+install_subtargets: sub-MultiTool-install_subtargets-ordered sub-PacketSniffer-install_subtargets-ordered sub-IOCScanner-install_subtargets-ordered sub-NetMapper-install_subtargets-ordered sub-Firewall-install_subtargets-ordered sub-VulnerabilityScanner-install_subtargets-ordered FORCE
+uninstall_subtargets: sub-MultiTool-uninstall_subtargets-ordered sub-PacketSniffer-uninstall_subtargets-ordered sub-IOCScanner-uninstall_subtargets-ordered sub-NetMapper-uninstall_subtargets-ordered sub-Firewall-uninstall_subtargets-ordered sub-VulnerabilityScanner-uninstall_subtargets-ordered FORCE
 
 sub-MultiTool-check_ordered:
 	@test -d MultiTool/ || mkdir -p MultiTool/
@@ -398,16 +544,19 @@ sub-MultiTool-check_ordered:
 sub-PacketSniffer-check_ordered: sub-MultiTool-check_ordered 
 	@test -d PacketSniffer/ || mkdir -p PacketSniffer/
 	cd PacketSniffer/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/PacketSniffer/PacketSniffer.pro ) && $(MAKE) -f Makefile check
-sub-VulnerabilityScanner-check_ordered: sub-PacketSniffer-check_ordered 
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile check
-sub-NetMapper-check_ordered: sub-VulnerabilityScanner-check_ordered 
+sub-IOCScanner-check_ordered: sub-PacketSniffer-check_ordered 
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile check
+sub-NetMapper-check_ordered: sub-IOCScanner-check_ordered 
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile check
 sub-Firewall-check_ordered: sub-NetMapper-check_ordered 
 	@test -d Firewall/ || mkdir -p Firewall/
 	cd Firewall/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/Firewall/Firewall.pro ) && $(MAKE) -f Makefile check
-check: sub-MultiTool-check_ordered sub-PacketSniffer-check_ordered sub-VulnerabilityScanner-check_ordered sub-NetMapper-check_ordered sub-Firewall-check_ordered
+sub-VulnerabilityScanner-check_ordered: sub-Firewall-check_ordered 
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile check
+check: sub-MultiTool-check_ordered sub-PacketSniffer-check_ordered sub-IOCScanner-check_ordered sub-NetMapper-check_ordered sub-Firewall-check_ordered sub-VulnerabilityScanner-check_ordered
 
 sub-MultiTool-benchmark_ordered:
 	@test -d MultiTool/ || mkdir -p MultiTool/
@@ -415,16 +564,19 @@ sub-MultiTool-benchmark_ordered:
 sub-PacketSniffer-benchmark_ordered: sub-MultiTool-benchmark_ordered 
 	@test -d PacketSniffer/ || mkdir -p PacketSniffer/
 	cd PacketSniffer/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/PacketSniffer/PacketSniffer.pro ) && $(MAKE) -f Makefile benchmark
-sub-VulnerabilityScanner-benchmark_ordered: sub-PacketSniffer-benchmark_ordered 
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile benchmark
-sub-NetMapper-benchmark_ordered: sub-VulnerabilityScanner-benchmark_ordered 
+sub-IOCScanner-benchmark_ordered: sub-PacketSniffer-benchmark_ordered 
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -f Makefile benchmark
+sub-NetMapper-benchmark_ordered: sub-IOCScanner-benchmark_ordered 
 	@test -d NetMapper/ || mkdir -p NetMapper/
 	cd NetMapper/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/NetMapper/NetMapper.pro ) && $(MAKE) -f Makefile benchmark
 sub-Firewall-benchmark_ordered: sub-NetMapper-benchmark_ordered 
 	@test -d Firewall/ || mkdir -p Firewall/
 	cd Firewall/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/Firewall/Firewall.pro ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-MultiTool-benchmark_ordered sub-PacketSniffer-benchmark_ordered sub-VulnerabilityScanner-benchmark_ordered sub-NetMapper-benchmark_ordered sub-Firewall-benchmark_ordered
+sub-VulnerabilityScanner-benchmark_ordered: sub-Firewall-benchmark_ordered 
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -f Makefile benchmark
+benchmark: sub-MultiTool-benchmark_ordered sub-PacketSniffer-benchmark_ordered sub-IOCScanner-benchmark_ordered sub-NetMapper-benchmark_ordered sub-Firewall-benchmark_ordered sub-VulnerabilityScanner-benchmark_ordered
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
@@ -436,9 +588,9 @@ FORCE:
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
-distdir: sub-MultiTool-distdir sub-PacketSniffer-distdir sub-VulnerabilityScanner-distdir sub-NetMapper-distdir sub-Firewall-distdir FORCE
+distdir: sub-MultiTool-distdir sub-PacketSniffer-distdir sub-IOCScanner-distdir sub-NetMapper-distdir sub-Firewall-distdir sub-VulnerabilityScanner-distdir FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
-	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_example_icons_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf Packet_Analyzer.pro $(DISTDIR)/
+	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_example_icons_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsanimation.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsfolderlistmodel.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsplatform.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labsqmlmodels.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssettings.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labssharedimage.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_labswavefrontmesh.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdf.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfquick.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_pdfwidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioning.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_positioningquick.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qml.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlassetdownloader.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcompiler.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlcore.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlintegration.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmllocalstorage.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmeta_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlmodels.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlnetwork.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmltest.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlworkerscript.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_qmlxmllistmodel.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quick.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basic.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2basicstyleimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusion.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2fusionstyleimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imagine.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2imaginestyleimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2impl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2material.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2materialstyleimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universal.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickcontrols2universalstyleimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2quickimpl.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickdialogs2utils.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicklayouts.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quicktemplates2.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickvectorimage.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_quickwidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannel.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webchannelquick.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginecore.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequick.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginequickdelegatesqml.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_webenginewidgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf Packet_Analyzer.pro $(DISTDIR)/
 
 sub-MultiTool-distdir: FORCE
 	@test -d MultiTool/ || mkdir -p MultiTool/
@@ -448,9 +600,9 @@ sub-PacketSniffer-distdir: FORCE
 	@test -d PacketSniffer/ || mkdir -p PacketSniffer/
 	cd PacketSniffer/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/PacketSniffer/PacketSniffer.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/PacketSniffer
 
-sub-VulnerabilityScanner-distdir: FORCE
-	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
-	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/VulnerabilityScanner
+sub-IOCScanner-distdir: FORCE
+	@test -d IOCScanner/ || mkdir -p IOCScanner/
+	cd IOCScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/IOCScanner/IOCScanner.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/IOCScanner
 
 sub-NetMapper-distdir: FORCE
 	@test -d NetMapper/ || mkdir -p NetMapper/
@@ -459,4 +611,8 @@ sub-NetMapper-distdir: FORCE
 sub-Firewall-distdir: FORCE
 	@test -d Firewall/ || mkdir -p Firewall/
 	cd Firewall/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/Firewall/Firewall.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/Firewall
+
+sub-VulnerabilityScanner-distdir: FORCE
+	@test -d VulnerabilityScanner/ || mkdir -p VulnerabilityScanner/
+	cd VulnerabilityScanner/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/bartosz/Packet_Analyzer/VulnerabilityScanner/VulnerabilityScanner.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/VulnerabilityScanner
 

@@ -19,6 +19,7 @@ private slots:
     void launchVulnerabilityScanner();
     void launchNetMapper(); 
     void launchFirewall(); 
+    void launchIOCScanner();
 
 private:
     QTabWidget  *tabs{nullptr};

@@ -128,10 +128,10 @@ LauncherWindow::LauncherWindow(QWidget *parent)
                 connect(tile, &QToolButton::clicked,
                         this, &LauncherWindow::launchPacketSniffer);
             }
-            else if(fn=="vuln.png") {
+            else if(fn=="ioc.png") {
                 vulnBtn = tile;
                 connect(tile, &QToolButton::clicked,
-                        this, &LauncherWindow::launchVulnerabilityScanner);
+                        this, &LauncherWindow::launchIOCScanner);
             }
             else if (fn == "netmapper.png") {
                 connect(tile, &QToolButton::clicked,
@@ -140,6 +140,10 @@ LauncherWindow::LauncherWindow(QWidget *parent)
             else if (fn == "firewall.png") {
                 connect(tile, &QToolButton::clicked,
                         this, &LauncherWindow::launchFirewall);
+            }
+            else if (fn == "vuln.png") {
+                connect(tile, &QToolButton::clicked,
+                        this, &LauncherWindow::launchVulnerabilityScanner);
             }
 
 
@@ -176,10 +180,10 @@ void LauncherWindow::launchPacketSniffer()
         QProcess::startDetached(exe);
 }
 
-void LauncherWindow::launchVulnerabilityScanner()
+void LauncherWindow::launchIOCScanner()
 {
     QString exe = QDir(QCoreApplication::applicationDirPath())
-                  .absoluteFilePath("../VulnerabilityScanner/VulnerabilityScanner");
+                  .absoluteFilePath("../IOCScanner/IOCScanner");
     if (QFile::exists(exe))
         QProcess::startDetached(exe);
 }
@@ -196,6 +200,14 @@ void LauncherWindow::launchFirewall()
 {
     QString exe = QDir(QCoreApplication::applicationDirPath())
                   .absoluteFilePath("../Firewall/Firewall");
+    if (QFile::exists(exe))
+        QProcess::startDetached(exe);
+}
+
+void LauncherWindow::launchVulnerabilityScanner()
+{
+    QString exe = QDir(QCoreApplication::applicationDirPath())
+                  .absoluteFilePath("../VulnerabilityScanner/VulnerabilityScanner");
     if (QFile::exists(exe))
         QProcess::startDetached(exe);
 }
