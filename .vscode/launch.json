@@ -2,18 +2,30 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch PacketSniffer",
+      "name": "Launch MultiTool",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/PacketSniffer",
+      "program": "${workspaceFolder}/MultiTool/MultiTool",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
-      "environment": [],
       "externalConsole": true,
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/gdb",
-      "preLaunchTask": "make"
+      "preLaunchTask": "make (root)"
+    },
+    {
+      "name": "Launch PacketSniffer",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/PacketSniffer/PacketSniffer",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "preLaunchTask": "make (root)"
     },
     {
       "name": "C/C++ Runner: Debug Session",

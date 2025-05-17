@@ -1,26 +1,27 @@
 {
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "qmake",
-            "type": "shell",
-            "command": "qmake",
-            "args": [
-                "PacketSniffer.pro"
-            ],
-            "group": "build",
-            "problemMatcher": []
+      {
+        "label": "qmake (root)",
+        "type": "shell",
+        "command": "qmake",
+        "args": [
+          "Packet_Analyzer.pro"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "make (root)",
+        "type": "shell",
+        "command": "make",
+        "dependsOn": "qmake (root)",
+        "group": {
+          "kind": "build",
+          "isDefault": true
         },
-        {
-            "label": "make",
-            "type": "shell",
-            "command": "make",
-            "dependsOn": "qmake",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": ["$gcc"]
-        }
+        "problemMatcher": ["$gcc"]
+      }
     ]
-}
+  }
+  
